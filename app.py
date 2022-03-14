@@ -101,8 +101,10 @@ def readPolicyFile(fileLocation):
   return df
 
 
+df = pd.read_csv("temp.csv")
+
 def cleanDocs(dataFrame):
-  cleanNull = dataFrame[dataFrame.text != 'null'].reset_index(drop=True)
+  cleanNull = dataFrame[df.text != 'null'].reset_index(drop=True)
   stop = set(stopwords.words('english'))
   exclude = set(string.punctuation) 
   lemma = WordNetLemmatizer()
