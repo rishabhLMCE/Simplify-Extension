@@ -2,4 +2,4 @@ pandas
 numpy
 flask
 nltk
-sklearn==1.0.2
+sklearn
