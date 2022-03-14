@@ -297,15 +297,14 @@ from flask import Flask, render_template, request
 from flask import Flask, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
-# from voice_analysis import voice_analysis
 import requests
 import json
 from bson.json_util import dumps
 from flask_cors import CORS, cross_origin
 from flask import Flask
-from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/classify",  methods=['GET',"POST"])
 def classify():
