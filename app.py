@@ -28,7 +28,22 @@ from sklearn.svm import SVC
 import numpy as np
 from sklearn.metrics import classification_report
 import sys
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+from flask import Flask, render_template, request, url_for, redirect, session #importing libraries
+from flask import Flask, request, url_for,Response, render_template_string
+import pandas as pd
+from flask import Flask, render_template, request
 
+
+from flask import Flask, flash, request, redirect, url_for
+from werkzeug.utils import secure_filename
+import os
+import requests
+import json
+from bson.json_util import dumps
+from flask_cors import CORS, cross_origin
+from flask import Flask
 
 def readPolicyFile(fileLocation):
   policySegments = []
@@ -287,22 +302,7 @@ def predictPolicyLabel(text):
 
 
 
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-from flask import Flask, render_template, request, url_for, redirect, session #importing libraries
-from flask import Flask, request, url_for,Response, render_template_string
-import pandas as pd
-from flask import Flask, render_template, request
 
-
-from flask import Flask, flash, request, redirect, url_for
-from werkzeug.utils import secure_filename
-import os
-import requests
-import json
-from bson.json_util import dumps
-from flask_cors import CORS, cross_origin
-from flask import Flask
 
 app = Flask(__name__)
 CORS(app)
