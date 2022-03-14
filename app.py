@@ -350,29 +350,29 @@ def classify():
             #               [12, 'Privacy contact information']]
 
             for i in range(len(labelList)):
-            if labelList[i] == "First Party Collection/Use":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Information a website collects directly from its users and owns")
+                        if labelList[i] == "First Party Collection/Use":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Information a website collects directly from its users and owns")
 
-            if labelList[i] == "Third Party Sharing/Collection":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("When a website share their user's information with another firm")
+                        if labelList[i] == "Third Party Sharing/Collection":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("When a website share their user's information with another firm")
 
-            if labelList[i] == "Introductory/Generic":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("General introduction about the website")
+                        if labelList[i] == "Introductory/Generic":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("General introduction about the website")
 
-            if labelList[i] == "Do Not Track":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Option of opting out of all the possible tracking")
+                        if labelList[i] == "Do Not Track":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Option of opting out of all the possible tracking")
 
-            if labelList[i] == "Data Retention":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Till how long a website will retain its user’s data")
+                        if labelList[i] == "Data Retention":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Till how long a website will retain its user’s data")
 
-            if labelList[i] == "Policy Change":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("How does the firm will notify its user about privacy change?")
+                        if labelList[i] == "Policy Change":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("How does the firm will notify its user about privacy change?")
 
-            if labelList[i] == "User Choice/Control":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("What choices does the website provide to their users")
+                        if labelList[i] == "User Choice/Control":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("What choices does the website provide to their users")
 
-            if labelList[i] == "Privacy contact information":
-                        labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Whom to contact in regards to privacy concerns.")
+                        if labelList[i] == "Privacy contact information":
+                                    labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Whom to contact in regards to privacy concerns.")
 
 
 
