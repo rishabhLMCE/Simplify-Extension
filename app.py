@@ -309,100 +309,103 @@ CORS(app)
 
 @app.route("/classify",  methods=['GET',"POST"])
 def classify():
-    k = request.get_json(force=True)
-    url = k["url"]
-    try:
-      # url = request.args["url"]
-      print(url)
-      html = urlopen(url).read()
-      soup = BeautifulSoup(html, features="html.parser")
+            k = request.get_json(force=True)
+            url = k["url"]
+#     try:
+            # url = request.args["url"]
+            print(url)
+            html = urlopen(url).read()
+            soup = BeautifulSoup(html, features="html.parser")
 
-      # kill all script and style elements
-      for script in soup(["script", "style"]):
-          script.extract()    # rip it out
+            # kill all script and style elements
+            for script in soup(["script", "style"]):
+            script.extract()    # rip it out
 
-      # get text
-      text = soup.get_text()
+            # get text
+            text = soup.get_text()
 
-      # break into lines and remove leading and trailing space on each
-      lines = (line.strip() for line in text.splitlines())
-      # break multi-headlines into a line each
-      chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
-      # drop blank lines
-      text = '\n'.join(chunk for chunk in chunks if chunk)
-      result = {}
-      result["text"] = text 
-      # print(text)
-      # predictPolicyLabel(text).to_csv("result {}.csv".format(url.split("//")[1]))
+            # break into lines and remove leading and trailing space on each
+            lines = (line.strip() for line in text.splitlines())
+            # break multi-headlines into a line each
+            chunks = (phrase.strip() for line in lines for phrase in line.split("  "))
+            # drop blank lines
+            text = '\n'.join(chunk for chunk in chunks if chunk)
+            result = {}
+            result["text"] = text 
+            # print(text)
+            # predictPolicyLabel(text).to_csv("result {}.csv".format(url.split("//")[1]))
 
-      result,label,labelList = predictPolicyLabel(text)
-      # label = [[1, 'First Party Collection/Use'], 
-#               [2, 'Third Party Sharing/Collection'], 
-#               [3, 'User Choice/Control'], 
-#               [4, 'User Access, Edit and Deletion'], 
-#               [5, 'Data Retention'],
-#               [6, 'Data Security'],
-#               [7, 'Policy Change'], 
-#               [8, 'Do Not Track'],
-#               [9, 'International and Specific Audiences'],
-#               [10, 'Introductory/Generic'],
-#               [11, 'Privacy contact information'],
-#               [12, 'Privacy contact information']]
+            result,label,labelList = predictPolicyLabel(text)
+            # label = [[1, 'First Party Collection/Use'], 
+            #               [2, 'Third Party Sharing/Collection'], 
+            #               [3, 'User Choice/Control'], 
+            #               [4, 'User Access, Edit and Deletion'], 
+            #               [5, 'Data Retention'],
+            #               [6, 'Data Security'],
+            #               [7, 'Policy Change'], 
+            #               [8, 'Do Not Track'],
+            #               [9, 'International and Specific Audiences'],
+            #               [10, 'Introductory/Generic'],
+            #               [11, 'Privacy contact information'],
+            #               [12, 'Privacy contact information']]
 
-      for i in range(len(labelList)):
-        if labelList[i] == "First Party Collection/Use":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Information a website collects directly from its users and owns")
-        
-        if labelList[i] == "Third Party Sharing/Collection":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("When a website share their user's information with another firm")
-      
-        if labelList[i] == "Introductory/Generic":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("General introduction about the website")
-      
-        if labelList[i] == "Do Not Track":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Option of opting out of all the possible tracking")
-      
-        if labelList[i] == "Data Retention":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Till how long a website will retain its user’s data")
+            for i in range(len(labelList)):
+            if labelList[i] == "First Party Collection/Use":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Information a website collects directly from its users and owns")
 
-        if labelList[i] == "Policy Change":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("How does the firm will notify its user about privacy change?")
-      
-        if labelList[i] == "User Choice/Control":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("What choices does the website provide to their users")
-      
-        if labelList[i] == "Privacy contact information":
-          labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Whom to contact in regards to privacy concerns.")
-      
+            if labelList[i] == "Third Party Sharing/Collection":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("When a website share their user's information with another firm")
 
+            if labelList[i] == "Introductory/Generic":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("General introduction about the website")
+
+            if labelList[i] == "Do Not Track":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Option of opting out of all the possible tracking")
+
+            if labelList[i] == "Data Retention":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Till how long a website will retain its user’s data")
+
+            if labelList[i] == "Policy Change":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("How does the firm will notify its user about privacy change?")
+
+            if labelList[i] == "User Choice/Control":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("What choices does the website provide to their users")
+
+            if labelList[i] == "Privacy contact information":
+            labelList[i] = "<h4>{}</h4>".format(labelList[i]) + "<p>{}</p>".format("Whom to contact in regards to privacy concerns.")
 
 
 
-      finalResult = {}
 
 
-      finalResult["report"] = result
-      finalResult["label"]  = label
-      finalResult["labelList"]  = labelList
-    except Exception as e:
-      exc_type, exc_obj, exc_tb = sys.exc_info()
-      fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-      print(exc_type, fname, exc_tb.tb_lineno)
-      finalResult = {}
+            finalResult = {}
 
 
-      finalResult["report"] = {"text": {
-          "0": "Under construction"},
-              "Label": {
-                  "0": "Under construction"  
-              }}
-      finalResult["label"]  = "To be done"
-      finalResult["labelList"]  = ["<h4>{}</h4>".format("ML Model Still under training for this data")]
+            finalResult["report"] = result
+            finalResult["label"]  = label
+            finalResult["labelList"]  = labelList
+            response = app.response_class(response=dumps(finalResult),mimetype='application/json')
+            return response
+            
+#     except Exception as e:
+#       exc_type, exc_obj, exc_tb = sys.exc_info()
+#       fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+#       print(exc_type, fname, exc_tb.tb_lineno)
+#       finalResult = {}
+
+
+#       finalResult["report"] = {"text": {
+#           "0": "Under construction"},
+#               "Label": {
+#                   "0": "Under construction"  
+#               }}
+#       finalResult["label"]  = "To be done"
+#       finalResult["labelList"]  = ["<h4>{}</h4>".format("ML Model Still under training for this data")]
 
 
     # result = {}
-    response = app.response_class(response=dumps(finalResult),mimetype='application/json')
-    return response
+#     response = app.response_class(response=dumps(finalResult),mimetype='application/json')
+#     return response
 
 
 if __name__ == "__main__":
