@@ -4,3 +4,5 @@ flask
 nltk
 sklearn
 bs4
+pymongo
+flask_cors
