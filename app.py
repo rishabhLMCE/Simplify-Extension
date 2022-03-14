@@ -383,7 +383,8 @@ def classify():
       finalResult["report"] = result
       finalResult["label"]  = label
       finalResult["labelList"]  = labelList
-    except:
+    except Exception as e:
+      print(e)
       finalResult = {}
 
 
