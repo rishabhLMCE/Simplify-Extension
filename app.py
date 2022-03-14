@@ -27,6 +27,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.svm import SVC
 import numpy as np
 from sklearn.metrics import classification_report
+import sys
 
 
 def readPolicyFile(fileLocation):
@@ -86,7 +87,7 @@ def readPolicyFile(fileLocation):
 
 
 def cleanDocs(dataFrame):
-  cleanNull = dataFrame[df.text != 'null'].reset_index(drop=True)
+  cleanNull = dataFrame[dataFrame.text != 'null'].reset_index(drop=True)
   stop = set(stopwords.words('english'))
   exclude = set(string.punctuation) 
   lemma = WordNetLemmatizer()
