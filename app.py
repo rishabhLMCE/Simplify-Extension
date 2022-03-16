@@ -217,12 +217,12 @@ print (Corpus['label_name'].unique())
 
 Corpus.to_csv('annotations/clean_OOP-115_policy_corpus.csv', index=False)
 
-model = buildModel(Corpus)
+#model = buildModel(Corpus)
 
 import pickle
 filename = 'policy_model.sav'
 
-pickle.dump(model, open(filename, 'wb'))
+#pickle.dump(model, open(filename, 'wb'))
 model = pickle.load(open(filename, 'rb'))
 
 def get_key(val):
