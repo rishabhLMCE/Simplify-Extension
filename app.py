@@ -1,15 +1,15 @@
 label = [[1, 'First Party Collection/Use'], 
-            [2, 'Third Party Sharing/Collection'], 
-            [3, 'User Choice/Control'], 
-            [4, 'User Access, Edit and Deletion'], 
-            [5, 'Data Retention'],
-            [6, 'Data Security'],
-            [7, 'Policy Change'], 
-            [8, 'Do Not Track'],
-            [9, 'International and Specific Audiences'],
-            [10, 'Introductory/Generic'],
-            [11, 'Privacy contact information'],
-            [12, 'Privacy contact information']]
+              [2, 'Third Party Sharing/Collection'], 
+              [3, 'User Choice/Control'], 
+              [4, 'User Access, Edit and Deletion'], 
+              [5, 'Data Retention'],
+              [6, 'Data Security'],
+              [7, 'Policy Change'], 
+              [8, 'Do Not Track'],
+              [9, 'International and Specific Audiences'],
+              [10, 'Introductory/Generic'],
+              [11, 'Privacy contact information'],
+              [12, 'Privacy contact information']]
 
 import os
 import json
@@ -100,7 +100,9 @@ def readPolicyFile(fileLocation):
   df = pd.DataFrame(policySegments, columns = ['text', 'label', 'label_name'])
   return df
 
-
+np.random.seed(500)
+fileLocation = './annotations'
+df = readPolicyFile(fileLocation)
 
 def cleanDocs(dataFrame):
   cleanNull = dataFrame[df.text != 'null'].reset_index(drop=True)
@@ -206,11 +208,11 @@ nltk.download('wordnet')
 
 
 np.random.seed(500)
-fileLocation = 'annotations'
+fileLocation = './annotations'
 df = readPolicyFile(fileLocation)
 Corpus = cleanDocs(df)
 print (Corpus['label_name'].unique())
-Corpus.to_csv('clean_OOP-115_policy_corpus.csv', index=False)
+# Corpus.to_csv('clean_OOP-115_policy_corpus.csv', index=False)
 # model = buildModel(Corpus)
 
 Corpus.to_csv('annotations/clean_OOP-115_policy_corpus.csv', index=False)
