@@ -101,7 +101,6 @@ def readPolicyFile(fileLocation):
   return df
 
 
-df = pd.read_csv("temp.csv")
 
 def cleanDocs(dataFrame):
   cleanNull = dataFrame[df.text != 'null'].reset_index(drop=True)
@@ -206,21 +205,22 @@ nltk.download('wordnet')
 
 
 
-# np.random.seed(500)
-# fileLocation = '/content/drive/MyDrive/annotations'
-# df = readPolicyFile(fileLocation)
-# Corpus = cleanDocs(df)
-# print (Corpus['label_name'].unique())
-# Corpus.to_csv('clean_OOP-115_policy_corpus.csv', index=False)
-# # model = buildModel(Corpus)
-
-# Corpus.to_csv('/content/drive/MyDrive/annotations/clean_OOP-115_policy_corpus.csv', index=False)
-
+np.random.seed(500)
+fileLocation = 'annotations'
+df = readPolicyFile(fileLocation)
+Corpus = cleanDocs(df)
+print (Corpus['label_name'].unique())
+Corpus.to_csv('clean_OOP-115_policy_corpus.csv', index=False)
 # model = buildModel(Corpus)
+
+Corpus.to_csv('annotations/clean_OOP-115_policy_corpus.csv', index=False)
+
+model = buildModel(Corpus)
 
 import pickle
 filename = 'policy_model.sav'
 
+pickle.dump(model, open(filename, 'wb'))
 model = pickle.load(open(filename, 'rb'))
 
 def get_key(val):
